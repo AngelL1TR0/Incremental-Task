@@ -11,7 +11,7 @@ public class Main {
         List<Thread> list = new LinkedList<>();
         for (int i = 0; i < 100; i++) {
 
-            Thread incrementsThread = new Thread(new IncrementalTask(accumulator, 1000));
+            Thread incrementsThread = new Thread(new IncrementalTask(accumulator, 100));
             incrementsThread.start();
             //AÑADIR LOS HILOS DE LA LISTA
             list.add(incrementsThread);
