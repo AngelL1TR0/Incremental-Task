@@ -9,7 +9,16 @@ public class Main {
 
             Thread incementsThread = new Thread(new IncrementalTask(accumulator, 1000));
             incementsThread.start();
-            System.out.println(accumulator.getValue());
         }
+
+
+        try{
+            Thread.sleep(15000);
+        }
+        catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(accumulator.getValue());
     }
 }
