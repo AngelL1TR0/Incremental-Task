@@ -8,7 +8,7 @@ public class Accumulator{
         this.value = value;
     }
 
-    public void increments(){
+    public synchronized void increments(){
         value = value +1;
     }
 

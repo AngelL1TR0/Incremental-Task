@@ -1,24 +1,33 @@
 package org.example;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
         Accumulator accumulator = new Accumulator(0);
+        //CREAR LA LISTA DE HILOS
+        List<Thread> list = new LinkedList<>();
+        for (int i = 0; i < 100; i++) {
 
-        for (int i = 0; i < 100 ; i++){
-
-            Thread incementsThread = new Thread(new IncrementalTask(accumulator, 1000));
-            incementsThread.start();
+            Thread incrementsThread = new Thread(new IncrementalTask(accumulator, 1000));
+            incrementsThread.start();
+            //AÑADIR LOS HILOS DE LA LISTA
+            list.add(incrementsThread);
         }
 
+        for (Thread list1 : list) {
 
-        try{
-            Thread.sleep(15000);
-        }
-        catch (InterruptedException e){
-            throw new RuntimeException(e);
+            try {
+                //HACER JOIN DE TODOS LOS HILOS DE LA LISTA
+                list1.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        System.out.println(accumulator.getValue());
-    }
+            System.out.println(accumulator.getValue());
+        }
+
 }
