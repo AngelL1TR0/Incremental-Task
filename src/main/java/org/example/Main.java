@@ -5,8 +5,11 @@ public class Main {
 
         Accumulator accumulator = new Accumulator(0);
 
+        for (int i = 0; i < 100 ; i++){
 
-        System.out.println(accumulator.getValue());
+            Thread incementsThread = new Thread(new IncrementalTask(accumulator, 1000));
+            incementsThread.start();
+            System.out.println(accumulator.getValue());
+        }
     }
-
 }
